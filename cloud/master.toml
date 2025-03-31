@@ -1,0 +1,108 @@
+[MASTER]
+password = "topsecret"
+
+[S3]
+endpoint = "https://object.ord1.coreweave.com"
+access_key = "OVEXCZJJQPUGXZOV"
+secret_key = "H1osbJRy3903PTMqyOAGD6MIohi4wLXGscnvMEduh10"
+
+[S3.MODELS]
+bucket = "lawlet-models"
+
+
+
+[[SKILL]]
+id = "uscode_knn"
+resources = { db = "uscode-knn" }
+
+[[SKILL]]
+id = "hf_llama"
+resources = { model = "vicuna-13b" }
+
+[[SKILL]]
+id = "hf_llama2"
+resources = { model = "Llama-2-13B-Chat-fp16" }
+
+
+
+[[COMMAND]]
+command = "text_completion"
+skill = "hf_llama2"
+title = "Text Completion"
+summary = "Predict text given a prompt"
+description = "Predict text given a prompt. If `stream` is set to `true`, single tokens will be returned as soon as available."
+
+[[COMMAND.PROP]]
+key = "prompt"
+type = "string"
+description = "The initial prompt for which the following tokens shall be predicted."
+required = true
+
+[[COMMAND.PROP]]
+key = "max_tokens"
+type = "integer"
+default = 200
+max = 1000
+description = "The maximum number of tokens to be returned, excluding input tokens."
+
+[[COMMAND.PROP]]
+key = "temperature"
+type = "integer"
+default = 0
+min = 0
+max = 100
+description = "The level of randomness from 0 to 100, where 0 means completely reproducable results."
+
+[[COMMAND.PROP]]
+key = "stream"
+type = "boolean"
+default = false
+description = "Wether to stream the indiviual tokens as soon as available."
+
+[[COMMAND.EVENT]]
+event = "result"
+description = "Dispatched when the computation yielded a result. Expect multiple when `stream = true`."
+
+[[COMMAND.EVENT.PROP]]
+key = "text"
+type = "string"
+description = "The generated text excluding input prompt text. Contains the next predicated token if `stream = true`."
+
+[[COMMAND.EVENT.PROP]]
+key = "done"
+type = "boolean"
+description = "Wether the generation is complete. Set to `true` if no further tokens will be sent."
+
+
+
+
+
+[[COMMAND]]
+command = "uscode_retrieve"
+skill = "uscode_knn"
+title = "Retrieve a U.S. Code given a reference text."
+
+[[COMMAND.PROP]]
+key = "text"
+type = "string"
+description = "The reference text used to generate an embedding an perform the retrieval."
+required = true
+
+[[COMMAND.EVENT]]
+event = "result"
+description = "Dispatched when the retrieval completed."
+
+[[COMMAND.EVENT.PROP]]
+key = "nr"
+type = "string"
+description = "The number of the law."
+
+[[COMMAND.EVENT.PROP]]
+key = "name"
+type = "string"
+description = "The name of the law."
+
+[[COMMAND.EVENT.PROP]]
+key = "body"
+type = "string"
+description = "The plaintext body of the law"

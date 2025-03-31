@@ -1,0 +1,152 @@
+Root{
+	line-height: 1.75;
+	font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+	background-color: #111111;
+	color: #f4f4f4;
+	padding: 0 20px;
+}
+
+.header{
+	width: 100%;
+	max-width: 640px;
+	padding: 60px 0 40px 0;
+	border-bottom: solid 1px #333;
+
+	Headline{
+		font-size: 48px;
+		margin-bottom: 0;
+	}
+
+	Text{
+		font-size: 18px;
+		color: #777;
+	}
+}
+
+.body{
+	padding-top: 30px;
+	padding-bottom: 100px;
+	width: 100%;
+	max-width: 640px;
+	min-height: calc(100vh - 370px);
+
+	Form{
+		width: 100%;
+	}
+
+	.question{
+		border: solid 2px transparent;
+		border-radius: 15px;
+		background-color: #222;
+		color: inherit;
+		font-size: 18px;
+		width: 100%;
+		min-height: 120px;
+		padding: 15px;
+		box-sizing: border-box;
+		margin-bottom: 40px;
+
+		&:focus{
+			border-color: dodgerblue;
+		}
+
+		&:disabled{
+			color: #ccc;
+		}
+
+		&[invalid]{
+			border-color: red;
+		}
+	}
+
+	.response{
+		gap: 20px;
+
+		.robot{
+			border-radius: 100px;
+			width: 70px;
+			height: 70px;
+			vertical-align: middle;
+			line-height: 70px;
+			text-align: center;
+			font-size: 30px;
+			background-color: #222;
+			flex-shrink: 0;
+		}
+
+		.bubble{
+			background-color: #222;
+			padding: 20px;
+			border-radius: 15px;
+
+			Text{
+				max-width: 510px;
+				overflow-wrap: break-word;
+			}
+
+			.error{
+				font-weight: bold;
+				color: red;
+			}
+
+			.dots{
+				Text{
+					font-size: 35px;
+					line-height: 18px;
+					animation-name: blink;
+					animation-duration: 1.4s;
+					animation-iteration-count: infinite;
+					animation-fill-mode: both;
+
+					&:nth-child(2){
+						animation-delay: .2s;
+					}
+
+					&:nth-child(3){
+						animation-delay: .4s;
+					}
+				}
+			}
+		}
+	}
+
+	.again{
+		width: 100%;
+		margin-top: 70px;
+		align-items: center;
+
+		.reset{
+			width: 100%;
+			max-width: 260px;
+			padding: 20px 30px;
+			font-size: 16px;
+			color: white;
+			border-radius: 22px;
+			background-color: dodgerblue;
+			border: none;
+			cursor: pointer;
+
+			&:active{
+				opacity: 0.6;
+			}
+		}
+	}
+}
+
+.powered{
+	color: #ccc;
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+@keyframes blink {
+	0% {
+		opacity: .2;
+	}
+	20% {
+		opacity: 1;
+	}
+	100% {
+		opacity: .2;
+	}
+}

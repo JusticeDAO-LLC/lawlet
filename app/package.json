@@ -1,0 +1,27 @@
+{
+	"name": "@lawlet/app",
+	"type": "module",
+	"dependencies": {
+		"@architekt/api": "^1.0.0",
+		"@architekt/forms": "^1.0.0",
+		"@architekt/html": "^1.0.0",
+		"@architekt/router": "^1.0.0",
+		"@architekt/ui": "^1.0.0",
+		"@architekt/web": "^1.0.0",
+		"@cloudkit/client": "^1.0.0",
+		"koa": "^2.13.4"
+	},
+	"devDependencies": {
+		"@architekt/cli": "^1.0.0"
+	},
+	"scripts": {
+		"dev": "node ./node_modules/@architekt/cli/cli.js dev",
+		"dist": "node ./node_modules/@architekt/cli/cli.js dist"
+	},
+	"architekt": {
+		"web": {
+			"appComponent": "./ui/App.js",
+			"server": "./server/server.js"
+		}
+	}
+}
